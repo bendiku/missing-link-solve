@@ -1,41 +1,51 @@
 // InputSection.tsx
 
-import React from 'react';
+import React, { useState } from 'react';
+import './InputSection.scss'
 
-interface InputSectionProps {
-  prefix: string;
-  suffix: string;
-  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
+const InputSection = () => {
 
-const InputSection: React.FC<InputSectionProps> = ({ prefix, suffix, handleInputChange }) => {
+  const [prefix, setPrefix] = useState<string>('');
+  const [suffix, setSuffix] = useState<string>('');
+  const [infix, setInfix] = useState<string>('');
 
-const shouldDisplayConcatenatedText = () => {
-    return true;
-}
-    
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    if (name === 'prefix') {
+      setPrefix(value);
+    } else if (name === 'suffix') {
+      setSuffix(value);
+    }
+  };
+
   return (
     <>
-      <div className="input-label">
-        <input
-          className="input-field"
-          type="text"
-          name="prefix"
-          value={prefix}
-          onChange={handleInputChange}
-        />
+      <div className="container">
+
+        <div className="demo-flex-spacer"></div>
+
+        <div className="webflow-style-input">
+          <input className="" type="text"></input>
+          <button type="submit"><i className="icon ion-android-arrow-forward"></i></button>
+        </div>
+
+        <div className="demo-flex-spacer"></div>
+
       </div>
-      {shouldDisplayConcatenatedText() && (  
-        <span className="concatenated-text">{prefix} {suffix}</span>
-      ) || <span className="concatenated-text">{prefix} {suffix}</span>}
-      <div className="input-label">
-        <input
-          className="input-field"
-          type="text"
-          name="suffix"
-          value={suffix}
-          onChange={handleInputChange}
-        />
+      <div className="form__group field">
+        <input type="input" className="form__field" placeholder='' name="name" id='name' readOnly required tabIndex={-1} value={infix} />
+      </div>
+      <div className="container">
+
+        <div className="demo-flex-spacer"></div>
+
+        <div className="webflow-style-input">
+          <input className="" type="text"></input>
+          <button type="submit"><i className="icon ion-android-arrow-forward"></i></button>
+        </div>
+
+        <div className="demo-flex-spacer"></div>
+
       </div>
     </>
   );

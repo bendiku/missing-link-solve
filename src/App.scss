@@ -46,3 +46,16 @@ body {
   width: 250px; /* Set the width to 250px */
   justify-self: center; /* Horizontally center within the grid item */
 }
+
+/* ------------------- */ 
+
+body {
+  font-family: 'Poppins', sans-serif; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.5rem;
+  background-color:#222222;
+}

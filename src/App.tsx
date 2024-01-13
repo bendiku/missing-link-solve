@@ -1,21 +1,10 @@
 // App.tsx
 
-import React, { useState } from 'react';
-import './App.css';
+import React from 'react';
+import './App.scss';
 import InputSection from './components/InputSection'; // Import the InputSection component
 
 const App: React.FC = () => {
-  const [prefix, setPrefix] = useState<string>('');
-  const [suffix, setSuffix] = useState<string>('');
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    if (name === 'prefix') {
-      setPrefix(value);
-    } else if (name === 'suffix') {
-      setSuffix(value);
-    }
-  };
 
   return (
     <div className="app-container">
@@ -25,9 +14,6 @@ const App: React.FC = () => {
         {Array.from({ length: 12 }).map((_, index) => (
           <InputSection
             key={index}
-            prefix={prefix}
-            suffix={suffix}
-            handleInputChange={handleInputChange}
           />
         ))}
       </div>
