@@ -11,11 +11,7 @@ const App: React.FC = () => {
       <h1>Missing-Link Solve</h1>
       <div className="grid-container">
         {/* Repeat the InputSection component twelve times */}
-        {Array.from({ length: 12 }).map((_, index) => (
-          <InputSection
-            key={index}
-          />
-        ))}
+        <InputSection />
       </div>
     </div>
   );
