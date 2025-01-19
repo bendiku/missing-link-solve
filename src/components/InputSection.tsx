@@ -9,15 +9,16 @@ const InputSection = () => {
   const [infix, setInfix] = useState<string>('');
   const [suffix, setSuffix] = useState<string>('');
   const [lines, setLines] = useState<string[]>([])
+  const [solutions, setSolution] = useState<string[]>([])
 
   const GLOSSARY_FILE_PATH = 'resources/ordliste_sortert_unik_a-z.txt'
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (name === 'prefix') {
-      setPrefix(value);
+      setPrefix(value.toLocaleLowerCase());
     } else if (name === 'suffix') {
-      setSuffix(value);
+      setSuffix(value.toLowerCase());
     }
   }
 
@@ -45,6 +46,7 @@ const InputSection = () => {
 
     console.log(filteredArray);
 
+    setSolution(filteredArray);
     filteredArray.forEach((line) => {
     setInfix(line)
     if (line.trim().startsWith(prefix)) {
@@ -72,20 +74,24 @@ const InputSection = () => {
       <div className="container">
         <div className="demo-flex-spacer"></div>
         <div className="webflow-style-input">
-          <input className="" type="text" name="prefix" value={prefix} onChange={handleInputChange} />
+          <input className="" type="text" maxLength={16} size={4} name="prefix" value={prefix} onChange={handleInputChange} />
         </div>
         <div className="demo-flex-spacer"></div>
-      </div>
-      <div className="form__group field">
-        <input type="input" className="form__field" placeholder='' name="name" id='name' readOnly tabIndex={-1} value={infix} />
       </div>
       <div className="container">
         <div className="demo-flex-spacer"></div>
         <div className="webflow-style-input">
-          <input className="" type="text" name="suffix" value={suffix} onChange={handleInputChange} />
+          <input className="" type="text" maxLength={16} size={4} name="suffix" value={suffix} onChange={handleInputChange} />
         </div>
         <div className="demo-flex-spacer"></div>
       </div>
+      {
+    solutions.map((item, index) =>
+        <li key={index}>
+            {item}
+        </li>
+    )
+}
     </>
   );
 }

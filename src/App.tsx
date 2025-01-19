@@ -8,11 +8,13 @@ const App: React.FC = () => {
 
   return (
     <div className="app-container">
-      <h1>Missing-Link Solve</h1>
+      <h1>Bindeordet</h1>
       <div className="grid-container">
-        {/* Repeat the InputSection component twelve times */}
         <InputSection />
       </div>
+      {/* <div className='wrapper'>
+	     <div className="divider div-transparent div-arrow-down"></div>
+      </div> */}
     </div>
   );
 };

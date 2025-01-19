@@ -10,12 +10,11 @@ body {
 .app-container {
   font-family: 'Arial', sans-serif;
   text-align: center;
-  padding: 50px;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(3, 150px); /* Three columns with fixed width */
+  grid-template-columns: repeat(2, 150px); /* Three columns with fixed width */
   grid-gap: 20px; /* Gap between grid items */
   align-items: center; /* Vertically center items within the grid container */
 }
@@ -52,4 +51,37 @@ body {
   min-height: 100vh;
   font-size: 1.5rem;
   background-color:#222222;
+}
+
+.wrapper
+{
+	padding-bottom: 90px;
+}
+
+.divider
+{
+	position: relative;
+	margin-top: 90px;
+	height: 1px;
+}
+
+.div-transparent:before
+{
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 5%;
+	right: 5%;
+	width: 90%;
+	height: 1px;
+	background-image: linear-gradient(to right, transparent, rgb(121, 123, 127), transparent);
+}
+
+
+h1, p, li {
+  color: white
+}
+
+li {
+  font-size: 1.2em;
 }
