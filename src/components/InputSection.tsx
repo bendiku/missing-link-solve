@@ -5,12 +5,13 @@ import { debounce } from 'lodash';
 const GLOSSARY_FILE_PATH = 'resources/ordliste_sortert_unik_a-z.txt';
 const MIN_LENGTH = 3;
 const DEBOUNCE_DELAY = 300;
+const MAX_RESULTS = 20;
 
 const InputSection = () => {
   const [prefix, setPrefix] = useState<string>('');
-  const [infix, setInfix] = useState<string>('');
   const [suffix, setSuffix] = useState<string>('');
   const [words, setWords] = useState<Set<string>>(new Set());
+  const [infixResults, setInfixResults] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   // Create word set on mount
@@ -27,38 +28,43 @@ const InputSection = () => {
   }, [prefix, words]);
 
   // Efficient search implementation
-  const findInfix = useCallback(() => {
+  const findInfixes = useCallback(() => {
     if (prefix.length < MIN_LENGTH || suffix.length < MIN_LENGTH) {
-      setInfix('');
+      setInfixResults([]);
       return;
     }
 
-    // Create a Map to store potential infixes
-    const potentialInfixes = new Map<string, boolean>();
+    // Use Set for potential infixes
+    const potentialInfixes = new Set<string>();
 
     // Find all words that start with the prefix
     for (const word of prefixMatches) {
       const possibleInfix = word.slice(prefix.length);
       if (possibleInfix.length >= 2) {
-        potentialInfixes.set(possibleInfix, true);
+        potentialInfixes.add(possibleInfix);
       }
     }
 
     // Find matching infixes that can form valid words with the suffix
-    for (const [infix] of potentialInfixes) {
-      if (words.has(infix + suffix)) {
-        setInfix(infix);
-        return;
+    const validInfixes: string[] = [];
+    for (const potentialInfix of potentialInfixes) {
+      if (words.has(potentialInfix + suffix)) {
+        validInfixes.push(potentialInfix);
       }
+      
+      // Limit the number of results
+      if (validInfixes.length >= MAX_RESULTS) break;
     }
 
-    setInfix('');
+    // Sort results alphabetically
+    setInfixResults(validInfixes.sort());
+
   }, [prefix, suffix, prefixMatches, words]);
 
   // Debounced search to prevent too frequent updates
   const debouncedSearch = useMemo(
-    () => debounce(findInfix, DEBOUNCE_DELAY),
-    [findInfix]
+    () => debounce(findInfixes, DEBOUNCE_DELAY),
+    [findInfixes]
   );
 
   useEffect(() => {
@@ -85,9 +91,9 @@ const InputSection = () => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (name === 'prefix') {
-      setPrefix(value.toLowerCase().trim());
+      setPrefix(value.toLowerCase());
     } else if (name === 'suffix') {
-      setSuffix(value.toLowerCase().trim());
+      setSuffix(value.toLowerCase());
     }
   };
 
@@ -101,24 +107,11 @@ const InputSection = () => {
             name="prefix"
             value={prefix}
             onChange={handleInputChange}
-            placeholder="Enter prefix..."
+            placeholder="prefiks"
             disabled={loading}
           />
         </div>
         <div className="demo-flex-spacer"></div>
-      </div>
-
-      <div className="form__group field">
-        <input
-          type="input"
-          className="form__field"
-          placeholder=""
-          name="name"
-          id="name"
-          readOnly
-          tabIndex={-1}
-          value={loading ? 'Loading...' : infix}
-        />
       </div>
 
       <div className="container">
@@ -129,14 +122,14 @@ const InputSection = () => {
             name="suffix"
             value={suffix}
             onChange={handleInputChange}
-            placeholder="Enter suffix..."
+            placeholder="suffiks"
             disabled={loading}
           />
         </div>
         <div className="demo-flex-spacer"></div>
       </div>
       {
-    solutions.map((item, index) =>
+    infixResults.map((item, index) =>
         <li key={index}>
             {item}
         </li>

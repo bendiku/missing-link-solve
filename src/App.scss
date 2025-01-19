@@ -1,22 +1,6 @@
-body {
-  margin: 0;
-  display: flex;
-  justify-content: center; /* Center the grid container horizontally */
-  align-items: flex-start; /* Align items at the top */
-  height: 100vh; /* Set the height to 100% of the viewport height */
-  background-color: #f4f4f4;
-}
-
 .app-container {
   font-family: 'Arial', sans-serif;
   text-align: center;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(2, 150px); /* Three columns with fixed width */
-  grid-gap: 20px; /* Gap between grid items */
-  align-items: center; /* Vertically center items within the grid container */
 }
 
 .input-label {
@@ -38,50 +22,4 @@ body {
 .input-field:focus {
   outline: none;
   border-color: #007bff;
-}
-
-/* ------------------- */ 
-
-body {
-  font-family: 'Poppins', sans-serif; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-size: 1.5rem;
-  background-color:#222222;
-}
-
-.wrapper
-{
-	padding-bottom: 90px;
-}
-
-.divider
-{
-	position: relative;
-	margin-top: 90px;
-	height: 1px;
-}
-
-.div-transparent:before
-{
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 5%;
-	right: 5%;
-	width: 90%;
-	height: 1px;
-	background-image: linear-gradient(to right, transparent, rgb(121, 123, 127), transparent);
-}
-
-
-h1, p, li {
-  color: white
-}
-
-li {
-  font-size: 1.2em;
 }

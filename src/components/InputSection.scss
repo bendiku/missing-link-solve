@@ -64,13 +64,7 @@ $gray: #9b9b9b;
 /* SUFFIX AND PREFIX*/
 
 // reset
-html { box-sizing: border-box; font-size: 10px; }
-*, *:before, *:after { box-sizing: inherit; }
-body, ul, li  { margin: 0; padding: 0; }
-li { list-style: none; }
-p, h1, h2, h3, h4, h5, h6 { margin-top: 0; }
-a { text-decoration: none; }
-input { border-style: none; background: transparent; outline: none; }
+
 
 // some basic page styles
 body {
@@ -103,6 +97,14 @@ a.demo {
   flex-direction: column;
   //justify-content: center;
   max-width: 1600px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 150px); /* Three columns with fixed width */
+  grid-gap: 20px; /* Gap between grid items */
+  align-items: center; /* Vertically center items within the grid container */
+  justify-content: center;
 }
 
 // colors
