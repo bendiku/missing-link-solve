@@ -1,6 +1,15 @@
 footer {
-    flex-shrink: 0;
-    background: rgba(57, 63, 84, 0.8);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
+  margin-top: auto;
+  background-color: #222222; /* Background color for the footer */
+  color: #fff; /* Text color */
+  text-align: center; /* Center-align the text */
+  padding: 10px; /* Add some padding inside the footer */
+  width: 100%; /* Ensures the footer spans the full width */
+  position: relative; /* Ensures it behaves correctly with the layout */
+  left: 0; /* Starts at the left edge */
+  right: 0; /* Ends at the right edge */
+}
+
+.copyrights {
+  font-size: 1rem;
+}

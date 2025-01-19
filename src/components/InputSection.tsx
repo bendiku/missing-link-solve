@@ -91,9 +91,9 @@ const InputSection = () => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (name === 'prefix') {
-      setPrefix(value.toLowerCase());
+      setPrefix(value.toLowerCase().trim());
     } else if (name === 'suffix') {
-      setSuffix(value.toLowerCase());
+      setSuffix(value.toLowerCase().trim());
     }
   };
 
@@ -109,6 +109,7 @@ const InputSection = () => {
             onChange={handleInputChange}
             placeholder="prefiks"
             disabled={loading}
+            autoComplete='off'
           />
         </div>
         <div className="demo-flex-spacer"></div>
@@ -124,6 +125,7 @@ const InputSection = () => {
             onChange={handleInputChange}
             placeholder="suffiks"
             disabled={loading}
+            autoComplete='off'
           />
         </div>
         <div className="demo-flex-spacer"></div>

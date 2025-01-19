@@ -6,16 +6,23 @@ const Footer = () => {
     return (
       <footer className="bg-gray-800 text-white mt-auto w-full">
         <div className="container mx-auto px-6 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="">
             {/* Text Section */}
-            <div className="mb-6 md:mb-0 max-w-xl">
-              <p className="text-gray-300 text-sm leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do 
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim 
-                ad minim veniam, quis nostrud exercitation ullamco laboris.
+            <div className="copyrights">
+              <p className="">
+                <b>Bokmålsordboka og Nynorskordboka</b>
+                <br></br>
+                Denne applikasjonen bruker data fra Bokmålsordboka og Nynorskordboka, 
+                som er utviklet av Språkrådet og Universitetet i Bergen. Innholdet i ordbøkene er beskyttet av opphavsrett. Dataene er hentet fra <a href='https://ordbøkene.no' target='_blank'>https://ordbøkene.no</a>.
+              </p>
+              <p>
+              <b>Norsk Scrabbleforbund (NSF)</b>
+                <br></br>
+                Data er hentet fra Norsk Scrabbleforbund. For mer informasjon om NSF, besøk <a href='http://www2.scrabbleforbundet.no' target='_blank' >http://www2.scrabbleforbundet.no.</a>
               </p>
             </div>
-  
+            
+            
             {/* Social Links */}
             <div className="flex space-x-6">
               {/* <a 
@@ -38,9 +45,9 @@ const Footer = () => {
           </div>
   
           {/* Copyright */}
-          <div className="mt-8 border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
+          {/* <div className="mt-8 border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
             ? {new Date().getFullYear()} Your Name. All rights reserved.
-          </div>
+          </div> */}
         </div>
       </footer>
     );
