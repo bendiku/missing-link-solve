@@ -8,8 +8,43 @@ footer {
   position: relative; /* Ensures it behaves correctly with the layout */
   left: 0; /* Starts at the left edge */
   right: 0; /* Ends at the right edge */
+  text-align: left;
 }
 
-.copyrights {
-  font-size: 1rem;
+.footer-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 2rem;
+  gap: 2rem; /* Adds space between footer-links and copyrights */
+}
+.footer-links{
+  margin-right: 10px;
+}
+
+.footer-image {
+  display: flex;
+  align-items: center; /* This will vertically center the children */
+  gap: 8px; /* Optional: adds space between the image and text */
+  float: right;
+}
+
+.github-image {
+  /* If you need to specify a size for the image */
+  width: 40px;
+  height: 40px;
+}
+
+.text-container {
+  /* Remove any default margins if present */
+  margin: 0;
+}
+
+.copyright {
+  flex: 1; /* Allows this section to take up remaining space */
+}
+
+#github-text {
+  /* Remove any default margins if present */
+  margin: 0;
 }
