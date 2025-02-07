@@ -5,15 +5,14 @@ import './Footer.scss'
 const Footer = () => {
     return (
       <footer className="bg-gray-800 text-white mt-auto w-full">
-        <div className="container mx-auto px-6 py-8">
           <div className="">
             {/* Text Section */}
             <div className="copyrights">
               <p className="">
                 <b>Bokmålsordboka og Nynorskordboka</b>
                 <br></br>
-                Denne applikasjonen bruker data fra Bokmålsordboka og Nynorskordboka, 
-                som er utviklet av Språkrådet og Universitetet i Bergen. Innholdet i ordbøkene er beskyttet av opphavsrett. Dataene er hentet fra <a href='https://ordbøkene.no' target='_blank'>https://ordbøkene.no</a>.
+                Applikasjonen bruker data fra Bokmålsordboka og Nynorskordboka, 
+                som er utviklet av Språkrådet og Universitetet i Bergen. Dataene er hentet fra <a href='https://ordbøkene.no' target='_blank'>https://ordbøkene.no</a>.
               </p>
               <p>
               <b>Norsk Scrabbleforbund (NSF)</b>
@@ -39,7 +38,6 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors duration-300"
               >
-                <p>teest</p>
               </a>
             </div>
           </div>
@@ -48,7 +46,6 @@ const Footer = () => {
           {/* <div className="mt-8 border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
             ? {new Date().getFullYear()} Your Name. All rights reserved.
           </div> */}
-        </div>
       </footer>
     );
   };
