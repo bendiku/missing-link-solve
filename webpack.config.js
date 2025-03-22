@@ -2,13 +2,14 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin'); // Du må installere denne
 
 module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.[contenthash].js',
-    publicPath: '' // Empty string for file:// protocol compatibility
+    publicPath: './' // Endre til relativ sti
   },
   mode: 'production',
   devtool: 'source-map',
@@ -32,11 +33,17 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'sass-loader']
       },
+      // For mindre bilder, inline dem
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/inline'
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8 * 1024 // 8kb
+          }
+        }
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
@@ -73,6 +80,18 @@ module.exports = {
         minifyCSS: true,
         minifyURLs: true
       }
-    })
+    }),
+    // Kopier statiske filer
+    new CopyPlugin({
+      patterns: [
+        { 
+          from: './public', 
+          to: './',
+          globOptions: {
+            ignore: ['**/index.html'] // Ikke kopier index.html siden HtmlWebpackPlugin håndterer den
+          }
+        }
+      ],
+    }),
   ]
 }
