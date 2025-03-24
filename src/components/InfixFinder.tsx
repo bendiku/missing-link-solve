@@ -2,7 +2,7 @@ import './InfixFinder.css'
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { debounce } from 'lodash';
 
-const GLOSSARY_FILE_PATH = 'resources/ordliste_sortert_unik_a-z.txt';
+const GLOSSARY_FILE_PATH = 'assets/data/ordliste_sortert_unik_a-z.txt';
 const MIN_LENGTH = 3;
 const DEBOUNCE_DELAY = 300;
 const MAX_RESULTS = 20;
