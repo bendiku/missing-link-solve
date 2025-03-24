@@ -32,7 +32,7 @@
   "scripts": {
     "start": "npm run build && npx serve -s build",
     "start:dev": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
-    "build": "rm -rf ./build && react-scripts build",
+    "build": "BUILD_PATH='./staging' react-scripts build && rm -rf ./build && mv ./staging ./build",
     "build:single": "rm -rf dist; webpack --config webpack.config.js && npx inliner dist/index.html > dist/bundle.html",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
