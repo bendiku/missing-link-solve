@@ -37,7 +37,7 @@ module.exports = {
       },
       // For mindre bilder, inline dem
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
         type: 'asset',
         parser: {
           dataUrlCondition: {
