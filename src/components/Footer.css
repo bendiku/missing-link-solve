@@ -1,0 +1,119 @@
+/* Footer.css - Modified to stay at the bottom of the page */
+
+/* First, ensure the page structure allows for a sticky footer */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Use viewport height to ensure the body takes full height */
+}
+
+/* Main content wrapper - this should wrap your app's content */
+.content-wrapper {
+  flex: 1 0 auto; /* This makes the content area expand to fill available space */
+}
+
+/* Footer styling */
+footer {
+  flex-shrink: 0; /* Prevent footer from shrinking */
+  margin-top: auto; /* Push to the bottom if content doesn't fill page */
+  background-color: #f0f0f0;
+  color: #000000;
+  padding: 25px;
+  width: 100%;
+  border-top: 2px solid #cccccc;
+}
+
+.footer-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1000px;
+  margin: 0 auto;
+  gap: 30px;
+}
+
+.copyright-section {
+  font-size: 16px;
+  line-height: 1.6;
+  width: 100%;
+}
+
+.main-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #333333;
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 8px;
+}
+
+.attribution-source {
+  margin: 16px 0;
+  padding-left: 15px;
+  border-left: 3px solid #cccccc;
+}
+
+.source-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333333;
+}
+
+/* Links styling for better visibility */
+footer a {
+  color: #0066cc;
+  text-decoration: underline;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+footer a:hover {
+  color: #004499;
+  text-decoration: underline;
+}
+
+/* For tablet devices */
+@media screen and (max-width: 768px) {
+  .footer-items {
+    flex-direction: column;
+  }
+  
+  .main-title {
+    font-size: 18px;
+  }
+  
+  .source-title {
+    font-size: 15px;
+  }
+}
+
+/* For mobile devices */
+@media screen and (max-width: 480px) {
+  footer {
+    padding: 15px;
+  }
+  
+  .copyright-section {
+    font-size: 14px;
+  }
+  
+  .main-title {
+    font-size: 16px;
+  }
+  
+  .source-title {
+    font-size: 14px;
+  }
+  
+  .attribution-source {
+    margin: 12px 0;
+    padding-left: 10px;
+  }
+}
