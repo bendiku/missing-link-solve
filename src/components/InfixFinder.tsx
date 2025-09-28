@@ -16,6 +16,7 @@ const InputSection = () => {
   const [searching, setSearching] = useState<boolean>(false);
   const [initialLoadComplete, setInitialLoadComplete] = useState<boolean>(false);
 
+
   // Create word set on mount
   useEffect(() => {
     readWordListFile();
@@ -24,9 +25,7 @@ const InputSection = () => {
   // Memoized prefix matches for better performance
   const prefixMatches = useMemo(() => {
     if (prefix.length < MIN_LENGTH) return [];
-    return Array.from(words).filter(word => 
-      word.startsWith(prefix)
-    );
+    return Array.from(words).filter(word => word.startsWith(prefix));
   }, [prefix, words]);
 
   // Efficient search implementation
@@ -58,7 +57,6 @@ const InputSection = () => {
         if (words.has(potentialInfix + suffix)) {
           validInfixes.push(potentialInfix);
         }
-        
         // Limit the number of results
         if (validInfixes.length >= MAX_RESULTS) break;
       }
@@ -67,7 +65,6 @@ const InputSection = () => {
       setInfixResults(validInfixes.sort());
       setSearching(false);
     }, 100); // Small timeout to ensure the UI shows the searching indicator
-
   }, [prefix, suffix, prefixMatches, words]);
 
   // Debounced search to prevent too frequent updates
@@ -85,7 +82,7 @@ const InputSection = () => {
       if (prefix.length >= MIN_LENGTH && suffix.length >= MIN_LENGTH) {
         debouncedSearch(() => findInfixes());
       } else {
-        setInfixResults([]);
+        // setInfixResults([]);
         setSearching(false);
       }
     }
@@ -111,11 +108,21 @@ const InputSection = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+    
     if (name === 'prefix') {
       setPrefix(value.toLowerCase().trim());
     } else if (name === 'suffix') {
       setSuffix(value.toLowerCase().trim());
     }
+  };
+
+  const handleInputFocus = (inputType: 'prefix' | 'suffix') => {
+    if (inputType === 'prefix'){
+      setPrefix('');
+    } else if (inputType === 'suffix') {
+      setSuffix('');
+    }
+    // setInfixResults([]);
   };
 
   const canSearch = prefix.length >= MIN_LENGTH && suffix.length >= MIN_LENGTH;
@@ -124,10 +131,10 @@ const InputSection = () => {
     <>
       {/* Instructions for elderly users */}
       <div className="instructions">
-        <p>Dette verktøyet hjelper deg å finne ordkombinasjoner ut i fra prefiks og sufikser.</p>
+        <p>Dette verktøyet hjelper deg å finne ordkombinasjoner ut i fra prefiks og suffikser.</p>
         <p>Skriv inn minst tre bokstaver i hvert felt.</p>
       </div>
-      
+
       {/* Horizontal input container */}
       <div className="input-container">
         <div className="webflow-style-input">
@@ -137,12 +144,13 @@ const InputSection = () => {
             name="prefix"
             value={prefix}
             onChange={handleInputChange}
+            onFocus={() => handleInputFocus('prefix')}
             placeholder="Skriv prefiks her"
             disabled={loading}
             autoComplete='off'
           />
         </div>
-        
+
         <div className="webflow-style-input">
           <div className="input-label">Suffiks:</div>
           <input
@@ -150,13 +158,14 @@ const InputSection = () => {
             name="suffix"
             value={suffix}
             onChange={handleInputChange}
+            onFocus={() => handleInputFocus('suffix')}
             placeholder="Skriv suffiks her"
             disabled={loading}
             autoComplete='off'
           />
         </div>
       </div>
-      
+
       {/* Search status indicator */}
       {(loading || searching) && (
         <div className="search-status">
@@ -164,7 +173,7 @@ const InputSection = () => {
           <span>{loading ? 'Laster ordliste...' : 'Søker etter infiks...'}</span>
         </div>
       )}
-      
+
       {/* Results display when not searching */}
       {!loading && !searching && (
         <>
@@ -173,7 +182,7 @@ const InputSection = () => {
               Ingen infiks funnet for "{prefix}" og "{suffix}".
             </div>
           )}
-          
+
           {infixResults.length > 0 && (
             <div className="results-container">
               <div className="results-title">{infixResults.length} mulige infiks:</div>
